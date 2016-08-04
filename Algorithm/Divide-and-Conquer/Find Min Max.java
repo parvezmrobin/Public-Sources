@@ -3,20 +3,20 @@ public class MinMax {
 	public static Pair<Integer> findMinMax(int[] a, int l, int h) {
 	  
 		if (h == l) {
-		  //If this division contains only one value 
-	    //this is both min and max value
+			//If this division contains only one value 
+	    	//this is both min and max value
 			return new Pair<Integer>(a[l], a[l]);
 		} else if (h - 1 == l) {
-		  //if this division contains two values
-		  //then make a pair of min and max value
+			//if this division contains two values
+			//then make a pair of min and max value
 			if (a[l] < a[h])
 				return new Pair<Integer>(a[l], a[h]);
 			else
 				return new Pair<Integer>(a[h], a[l]);
 		} else {
-		  //If the division contains more than two values
-		  //divide it into two division recursively
-		  //until the divisions contain one or two values
+			//If the division contains more than two values
+			//divide it into two division recursively
+			//until the divisions contain one or two values
 			int m = (l + h) / 2;
 			Pair<Integer> pair1 = findMinMax(a, l, m);
 			Pair<Integer> pair2 = findMinMax(a, m + 1, h);
