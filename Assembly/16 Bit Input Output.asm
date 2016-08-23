@@ -1,4 +1,4 @@
-;An assembly program to take 16 bit input
+;An assembly program to read 16 bit input
 ;and print that number again from and to consol
 
 ORG 100H
@@ -18,7 +18,7 @@ MAIN PROC
     RET
 ENDP
 
-;A procedure that takes a 16 bit signed input
+;A procedure that reads a 16 bit signed input
 ;and store that in AX
 SCAN PROC
     ;Backup register values in stack
