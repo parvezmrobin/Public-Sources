@@ -9,7 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-public class Sorting {
+class MergeSorting {
 	@SuppressWarnings("unchecked")
 	public static File divide(File inFile) throws FileNotFoundException, IOException, ClassNotFoundException {
 		FileInputStream inputStream = new FileInputStream(inFile);
@@ -73,7 +73,8 @@ public class Sorting {
 		stream2.close();
 		return outFile;
 	}
-
+}
+public class QuickSortWithFileObjectWriting{
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		ArrayList<Integer> a = new ArrayList<>();
