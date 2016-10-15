@@ -92,7 +92,8 @@ SCAN PROC
     POP BX
     RET
 ENDP
-  
+
+; A procedure that prints number stored in AX in decimal format
 PRINT PROC
     ;Backup register values in stack
     PUSH AX
