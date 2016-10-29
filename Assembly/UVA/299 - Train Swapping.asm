@@ -31,9 +31,8 @@ MAIN PROC
     	XOR BX, BX
     	
     	BUBBLESORT:
-    	
-    		PUSH BX
-    		PUSH CX
+		PUSH BX
+		PUSH CX
     		INNERLOOP:
     		MOV DL, BX[a]
     		INC BX
@@ -49,7 +48,7 @@ MAIN PROC
     		LOOP INNERLOOP
     	POP CX
     	POP BX
-    	loop BUBBLESORT
+    	LOOP BUBBLESORT
    		
    		PUSH AX
    		MOV AH, 9
