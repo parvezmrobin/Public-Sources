@@ -47,7 +47,7 @@ msgnfnd DB  'Not found$'
     OR CX, CX
     JZ NOTFOUND ;If length of string is zero, then not found
     CMP sublen, CX
-    JE NOTFOUND ;If substring is larger that string, then not found
+    JG NOTFOUND ;If substring is larger that string, then not found
     
     ;Load source and destination index
     LEA SI, substr

@@ -5,18 +5,18 @@
  
 ORG 100H
 .DATA
-n		DW	?
-m		DW	?
-a		DW	100	dup(?)
-rsum	DW	20	dup(?)
-csum	DW	20	dup(?)
-ravg	DW	20	dup(?)
-cavg	DW	20	dup(?)
-rsize	DW 	? 
-strrs	DB 'Row Summation: $'
-strcs	DB 'Column Summation: $'
-strra	DB 'Row Average: $'
-strca	DB 'Column Average: $'
+n       DW	?
+m       DW	?
+a       DW	100	dup(?)
+rsum    DW	20	dup(?)
+csum    DW	20	dup(?)
+ravg    DW	20	dup(?)
+cavg    DW	20	dup(?)
+rsize   DW 	? 
+strrs   DB 'Row Summation: $'
+strcs   DB 'Column Summation: $'
+strra   DB 'Row Average: $'
+strca   DB 'Column Average: $'
 
 .CODE
 MAIN PROC
@@ -48,9 +48,10 @@ MAIN PROC
     POP CX
     LOOP INFOROUTER 
     
-    ;Row summation
+    ;Row summation, average
     MOV CX, n
-    XOR BX, BX
+    XOR BX, BX      ;BX holds row offset
+    XOR DI, DI      ;DI holds row index
     ROWFOROUTER:
     PUSH CX
     	MOV CX, m
@@ -61,30 +62,19 @@ MAIN PROC
     	ADD SI, 2
     	LOOP ROWFORINNER
     	
-    	PUSH BX
-    	PUSH AX		;Push sumation to stack
-    	;BX holds row offset
-    	;row index = row offset / size of row
-    	MOV AX, BX
-    	CWD 
-    	IDIV rsize	;AX holds the row index
-    	MOV BX, AX  
-    	;For word array index must be multiplied by 2
-    	SHL BX, 1	
-    	POP AX		;Pop summation from stack 
-    	
-    	MOV rsum[BX], AX
+    	MOV rsum[DI], AX
     	CWD
-    	IDIV m		;AX holds the average
-    	MOV ravg[BX], AX
+    	IDIV m          ;AX holds the average
+    	MOV ravg[DI], AX
     	POP BX
     		
     ADD BX, rsize
+    ADD DI, 2
     POP CX
     LOOP ROWFOROUTER
     
     
-    ;Column Summation
+    ;Column summation, average
     MOV CX, m
     XOR BX, BX	;BX holds index of element
     COLFOROUTER:
